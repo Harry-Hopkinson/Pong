@@ -1,94 +1,127 @@
-### Imports ###
+# Import required library
 import turtle
-from constants import *
 
-### Turtle Screen ###
-screen = turtle.Screen()
-screen.title("Pong")
-screen.bgcolor(WHITE)
-screen.setup(width=WIDTH, height=HEIGHT)
 
-class Game():
-    def __init__(self):
-        self.score = 0
-        self.ball = turtle.Turtle()
-        self.ball.speed(0)
-        self.ball.shape("circle")
-        self.ball.color(BLACK)
-        self.ball.penup()
-        self.ball.goto(0, 0)
-        self.ball.dx = 2
-        self.ball.dy = 2
-        self.paddles()
-        self.score_board()
-    
-    def paddles(self):
-        left_paddle = turtle.Turtle()
-        left_paddle.speed(0)
-        left_paddle.shape("square")
-        left_paddle.color(BLACK)
-        left_paddle.shapesize(stretch_wid=6, stretch_len=2)
+# Create screen
+sc = turtle.Screen()
+sc.title("Pong game")
+sc.bgcolor("white")
+sc.setup(width=1000, height=600)
 
-        right_paddle = turtle.Turtle()
-        right_paddle.speed(0)
-        right_paddle.shape("square")
-        right_paddle.color(BLACK)
-        right_paddle.shapesize(stretch_wid=6, stretch_len=2)
 
-    def game_over(self):
-        if self.ball.ycor() > HEIGHT:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
+# Left paddle
+left_pad = turtle.Turtle()
+left_pad.speed(0)
+left_pad.shape("square")
+left_pad.color("black")
+left_pad.shapesize(stretch_wid=6, stretch_len=2)
+left_pad.penup()
+left_pad.goto(-400, 0)
 
-    def score_board(self):
-        self.score_a = turtle.Turtle()
-        self.score_a.speed(0)
-        self.score_a.color(BLACK)
-        self.score_a.penup()
-        self.score_a.setposition(-WIDTH/2 + 20, HEIGHT/2 - 20)
-        self.score_a.write(self.score, font=("Arial", 20, "normal"))
 
-    def move_paddle(self):
-        if self.ball.ycor() > HEIGHT:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
-        
-        elif self.ball.ycor() < -HEIGHT:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
+# Right paddle
+right_pad = turtle.Turtle()
+right_pad.speed(0)
+right_pad.shape("square")
+right_pad.color("black")
+right_pad.shapesize(stretch_wid=6, stretch_len=2)
+right_pad.penup()
+right_pad.goto(400, 0)
 
-        elif self.ball.xcor() > WIDTH:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
-        
-        elif self.ball.xcor() < -WIDTH:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
-        
-        elif self.ball.xcor() > WIDTH/2:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
-        
-        elif self.ball.xcor() < -WIDTH/2:
-            self.ball.goto(0, 0)
-            self.ball.dx *= -1
-            self.score += 1
-            self.score_board()
-    
-    def move_ball(self):
-        self.ball.setx(self.ball.xcor() + self.ball.dx)
-        self.ball.sety(self.ball.ycor() + self.ball.dy)
-        
 
+# Ball of circle shape
+hit_ball = turtle.Turtle()
+hit_ball.speed(40)
+hit_ball.shape("circle")
+hit_ball.color("black")
+hit_ball.penup()
+hit_ball.goto(0, 0)
+hit_ball.dx = 5
+hit_ball.dy = -5
+
+
+# Initialize the score
+left_player = 0
+right_player = 0
+
+
+# Displays the score
+sketch = turtle.Turtle()
+sketch.speed(0)
+sketch.color("blue")
+sketch.penup()
+sketch.hideturtle()
+sketch.goto(0, 260)
+sketch.write("Left_player : 0 Right_player: 0", align="center", font=("Courier", 24, "normal"))
+
+
+# Functions to move paddle vertically
+def paddleaup():
+	y = left_pad.ycor()
+	y += 20
+	left_pad.sety(y)
+
+
+def paddleadown():
+	y = left_pad.ycor()
+	y -= 20
+	left_pad.sety(y)
+
+
+def paddlebup():
+	y = right_pad.ycor()
+	y += 20
+	right_pad.sety(y)
+
+
+def paddlebdown():
+	y = right_pad.ycor()
+	y -= 20
+	right_pad.sety(y)
+
+
+# Keyboard bindings
+sc.listen()
+sc.onkeypress(paddleaup, "w")
+sc.onkeypress(paddleadown, "s")
+sc.onkeypress(paddlebup, "Up")
+sc.onkeypress(paddlebdown, "Down")
+
+
+while True:
+	sc.update()
+
+	hit_ball.setx(hit_ball.xcor()+hit_ball.dx)
+	hit_ball.sety(hit_ball.ycor()+hit_ball.dy)
+
+	# Checking borders
+	if hit_ball.ycor() > 280:
+		hit_ball.sety(280)
+		hit_ball.dy *= -1
+
+	if hit_ball.ycor() < -280:
+		hit_ball.sety(-280)
+		hit_ball.dy *= -1
+
+	if hit_ball.xcor() > 500:
+		hit_ball.goto(0, 0)
+		hit_ball.dy *= -1
+		left_player += 1
+		sketch.clear()
+		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
+
+	if hit_ball.xcor() < -500:
+		hit_ball.goto(0, 0)
+		hit_ball.dy *= -1
+		right_player += 1
+		sketch.clear()
+		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
+
+	# Paddle ball collision
+	if (hit_ball.xcor() > 360 and hit_ball.xcor() < 370) and (hit_ball.ycor() < right_pad.ycor()+40 and hit_ball.ycor() > right_pad.ycor()-40):
+		hit_ball.setx(360)
+		hit_ball.dx*=-1
+		
+	if (hit_ball.xcor()<-360 and hit_ball.xcor()>-370) and (hit_ball.ycor()<left_pad.ycor()+40 and hit_ball.ycor()>left_pad.ycor()-40):
+		hit_ball.setx(-360)
+		hit_ball.dx*=-1
