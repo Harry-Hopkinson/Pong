@@ -60,40 +60,43 @@ sketch.color("blue")
 sketch.penup()
 sketch.hideturtle()
 sketch.goto(0, 260)
-sketch.write("Left_player : 0 Right_player: 0", align="center", font=("Courier", 24, "normal"))
+sketch.write("0 : 0", align="center", font=("Courier", 24, "normal"))
 
 
-# Functions to move paddle vertically
-def paddleaup():
-	y = left_pad.ycor()
-	y += 20
-	left_pad.sety(y)
+class PaddleMovement:
+    def __init__(self):
+        self.self = self
+    
+    def paddleaup():
+        y = left_pad.ycor()
+        y += 20
+        left_pad.sety(y)
 
 
-def paddleadown():
-	y = left_pad.ycor()
-	y -= 20
-	left_pad.sety(y)
+    def paddleadown():
+        y = left_pad.ycor()
+        y -= 20
+        left_pad.sety(y)
 
 
-def paddlebup():
-	y = right_pad.ycor()
-	y += 20
-	right_pad.sety(y)
+    def paddlebup():
+        y = right_pad.ycor()
+        y += 20
+        right_pad.sety(y)
 
 
-def paddlebdown():
-	y = right_pad.ycor()
-	y -= 20
-	right_pad.sety(y)
-
+    def paddlebdown():
+        y = right_pad.ycor()
+        y -= 20
+        right_pad.sety(y)
+    
 
 # Keyboard bindings
 sc.listen()
-sc.onkeypress(paddleaup, "w")
-sc.onkeypress(paddleadown, "s")
-sc.onkeypress(paddlebup, "Up")
-sc.onkeypress(paddlebdown, "Down")
+sc.onkeypress(PaddleMovement.paddleaup, "w")
+sc.onkeypress(PaddleMovement.paddleadown, "s")
+sc.onkeypress(PaddleMovement.paddlebup, "Up")
+sc.onkeypress(PaddleMovement.paddlebdown, "Down")
 
 
 while True:
