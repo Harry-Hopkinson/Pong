@@ -54,6 +54,7 @@ right_player = 0
 
 
 # Displays the score
+
 sketch = turtle.Turtle()
 sketch.speed(0)
 sketch.color("blue")
@@ -61,6 +62,10 @@ sketch.penup()
 sketch.hideturtle()
 sketch.goto(0, 260)
 sketch.write("0 : 0", align="center", font=("Courier", 24, "normal"))
+
+def resetPad():
+    left_pad.goto(-400, 0)
+    right_pad.goto(400, 0)
 
 
 class PaddleMovement:
@@ -120,6 +125,7 @@ while True:
 		left_player += 1
 		sketch.clear()
 		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
+        resetPad()
 
 	if hit_ball.xcor() < -500:
 		hit_ball.goto(0, 0)
@@ -127,6 +133,7 @@ while True:
 		right_player += 1
 		sketch.clear()
 		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
+        resetPad()
 
 	# Paddle ball collision
 	if (hit_ball.xcor() > 360 and hit_ball.xcor() < 370) and (hit_ball.ycor() < right_pad.ycor()+40 and hit_ball.ycor() > right_pad.ycor()-40):
