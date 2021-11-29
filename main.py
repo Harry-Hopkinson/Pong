@@ -1,5 +1,6 @@
-# Import required library
+### Imports ###
 import turtle
+import random
 
 
 # Create screen
@@ -36,8 +37,15 @@ hit_ball.shape("circle")
 hit_ball.color("black")
 hit_ball.penup()
 hit_ball.goto(0, 0)
-hit_ball.dx = 5
-hit_ball.dy = -5
+hit_ball.dx = 0
+hit_ball.dy = 0
+
+circleDirection = random.choice(["left", "right"])
+
+if circleDirection == "left":
+    hit_ball.dx = 5
+else:
+    hit_ball.dx = -5
 
 
 # Initialize the score

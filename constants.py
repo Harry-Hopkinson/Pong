@@ -5,3 +5,5 @@ HEIGHT = 525
 ### Colours ###
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+
+FPS = 60
