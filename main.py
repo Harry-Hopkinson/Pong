@@ -54,3 +54,45 @@ class Game():
         self.score_a.setposition(-WIDTH/2 + 20, HEIGHT/2 - 20)
         self.score_a.write(self.score, font=("Arial", 20, "normal"))
 
+    def move_paddle(self):
+        if self.ball.ycor() > HEIGHT:
+            self.ball.goto(0, 0)
+            self.ball.dx *= -1
+            self.score += 1
+            self.score_board()
+        
+        elif self.ball.ycor() < -HEIGHT:
+            self.ball.goto(0, 0)
+            self.ball.dx *= -1
+            self.score += 1
+            self.score_board()
+
+        elif self.ball.xcor() > WIDTH:
+            self.ball.goto(0, 0)
+            self.ball.dx *= -1
+            self.score += 1
+            self.score_board()
+        
+        elif self.ball.xcor() < -WIDTH:
+            self.ball.goto(0, 0)
+            self.ball.dx *= -1
+            self.score += 1
+            self.score_board()
+        
+        elif self.ball.xcor() > WIDTH/2:
+            self.ball.goto(0, 0)
+            self.ball.dx *= -1
+            self.score += 1
+            self.score_board()
+        
+        elif self.ball.xcor() < -WIDTH/2:
+            self.ball.goto(0, 0)
+            self.ball.dx *= -1
+            self.score += 1
+            self.score_board()
+    
+    def move_ball(self):
+        self.ball.setx(self.ball.xcor() + self.ball.dx)
+        self.ball.sety(self.ball.ycor() + self.ball.dy)
+        
+
