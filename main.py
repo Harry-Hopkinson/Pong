@@ -1,7 +1,3 @@
-### Image ###
-# https://www.google.com/search?q=create+pong+in+python+board&rlz=1C1GCEB_enGB978GB978&hl=en&tbm=isch&source=iu&ictx=1&fir=ZuRtlgqOLCAs3M%252C98ebYjHXFBlIaM%252C_&vet=1&usg=AI4_-kShZZJULG_Y_uqAxMsuOkKNIfh_RQ&sa=X&ved=2ahUKEwiCi6-Bx730AhWsQEEAHYAZCCIQ9QF6BAgFEAE&biw=786&bih=779&dpr=1&surl=1&safe=active&ssui=on#imgrc=ZuRtlgqOLCAs3M
-# https://www.pygame.org/docs/ref/draw.html#pygame.draw.circle
-
 ### Imports ###
 import turtle
 from constants import *
