@@ -125,7 +125,7 @@ while True:
 		left_player += 1
 		sketch.clear()
 		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
-        resetPad()
+		resetPad()
 
 	if hit_ball.xcor() < -500:
 		hit_ball.goto(0, 0)
@@ -133,7 +133,7 @@ while True:
 		right_player += 1
 		sketch.clear()
 		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
-        resetPad()
+		resetPad()
 
 	# Paddle ball collision
 	if (hit_ball.xcor() > 360 and hit_ball.xcor() < 370) and (hit_ball.ycor() < right_pad.ycor()+40 and hit_ball.ycor() > right_pad.ycor()-40):
