@@ -94,7 +94,7 @@ class PaddleMovement:
         y = right_pad.ycor()
         y -= 20
         right_pad.sety(y)
-    
+
 
 # Keyboard bindings
 sc.listen()
@@ -143,3 +143,16 @@ while True:
 	if (hit_ball.xcor()<-360 and hit_ball.xcor()>-370) and (hit_ball.ycor()<left_pad.ycor()+40 and hit_ball.ycor()>left_pad.ycor()-40):
 		hit_ball.setx(-360)
 		hit_ball.dx*=-1
+	
+	# Check if paddle goes of screen
+	if left_pad.ycor() > 250:
+		left_pad.sety(250)
+	
+	if left_pad.ycor() < -250:
+		left_pad.sety(-250)
+	
+	if right_pad.ycor() > 250:
+		right_pad.sety(250)
+	
+	if right_pad.ycor() < -250:
+		right_pad.sety(-250)
