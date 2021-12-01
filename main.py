@@ -18,6 +18,7 @@ left_pad.color("black")
 left_pad.shapesize(stretch_wid=6, stretch_len=2)
 left_pad.penup()
 left_pad.goto(-400, 0)
+left_pad.dy = 0
 
 
 # Right paddle
@@ -28,6 +29,7 @@ right_pad.color("black")
 right_pad.shapesize(stretch_wid=6, stretch_len=2)
 right_pad.penup()
 right_pad.goto(400, 0)
+right_pad.dy = 0
 
 
 # Ball of circle shape
@@ -54,7 +56,6 @@ right_player = 0
 
 
 # Displays the score
-
 sketch = turtle.Turtle()
 sketch.speed(0)
 sketch.color("blue")
@@ -144,15 +145,18 @@ while True:
 		hit_ball.setx(-360)
 		hit_ball.dx*=-1
 	
-	# Check if paddle goes of screen
+	# Check if paddle goes of screen with an animation
 	if left_pad.ycor() > 250:
 		left_pad.sety(250)
-	
+		left_pad.dy *= -1
+
 	if left_pad.ycor() < -250:
 		left_pad.sety(-250)
-	
+		left_pad.dy *= -1
+
 	if right_pad.ycor() > 250:
 		right_pad.sety(250)
-	
+		right_pad.dy *= -1
 	if right_pad.ycor() < -250:
 		right_pad.sety(-250)
+		right_pad.dy *= -1
