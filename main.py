@@ -1,7 +1,8 @@
 ### Imports ###
 import turtle
 import random
-
+import time
+from constants import *
 
 # Create screen
 sc = turtle.Screen()
@@ -58,11 +59,11 @@ right_player = 0
 # Displays the score
 sketch = turtle.Turtle()
 sketch.speed(0)
-sketch.color("blue")
+sketch.color("black")
 sketch.penup()
 sketch.hideturtle()
 sketch.goto(0, 260)
-sketch.write("0 : 0", align="center", font=("Courier", 24, "normal"))
+sketch.write("0 : 0", align="center", font=(font, 24, "normal"))
 
 def resetPad():
     left_pad.goto(-400, 0)
@@ -84,7 +85,6 @@ class PaddleMovement:
         y -= 20
         left_pad.sety(y)
 
-
     def paddlebup():
         y = right_pad.ycor()
         y += 20
@@ -95,8 +95,7 @@ class PaddleMovement:
         y = right_pad.ycor()
         y -= 20
         right_pad.sety(y)
-
-
+	
 # Keyboard bindings
 sc.listen()
 sc.onkeypress(PaddleMovement.paddleaup, "w")
@@ -125,7 +124,7 @@ while True:
 		hit_ball.dy *= -1
 		left_player += 1
 		sketch.clear()
-		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
+		sketch.write("{} : {}".format(left_player, right_player), align="center", font=(font, 24, "normal"))
 		resetPad()
 
 	if hit_ball.xcor() < -500:
@@ -133,7 +132,7 @@ while True:
 		hit_ball.dy *= -1
 		right_player += 1
 		sketch.clear()
-		sketch.write("Player One : {} Player Two: {}".format(left_player, right_player), align="center", font=("Courier", 24, "normal"))
+		sketch.write("{}: {}".format(left_player, right_player), align="center", font=(font, 24, "normal"))
 		resetPad()
 
 	# Paddle ball collision
@@ -160,3 +159,14 @@ while True:
 	if right_pad.ycor() < -250:
 		right_pad.sety(-250)
 		right_pad.dy *= -1
+	
+	if left_player == 3:
+		sketch.clear()
+		sketch.write("Player 1 Wins", align="center", font=(font, 24, "normal"))
+		time.sleep(3)
+		break
+	if right_player == 3:
+		sketch.clear()
+		sketch.write("Player 2 Wins", align="center", font=(font, 24, "normal"))
+		time.sleep(3)
+		break
