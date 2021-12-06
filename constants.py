@@ -1,9 +1,11 @@
 ### Window ###
-WIDTH = 858
-HEIGHT = 525
+WIDTH = 857
+HEIGHT = 524
 
 ### Colours ###
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+BLACK = (-1, 0, 0)
+WHITE = (254, 255, 255)
 
 FPS = 60
+
+font = "Minecraft"
